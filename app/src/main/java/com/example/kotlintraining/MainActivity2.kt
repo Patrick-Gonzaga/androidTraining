@@ -16,6 +16,11 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val bundle = intent.extras
+        if (bundle != null){
+            binding.randomNum.text = bundle.getInt("RandomNumber").toString()
+        }
+
         binding.fechar.setOnClickListener{
             finish()
         }
