@@ -1,5 +1,6 @@
 package com.example.kotlintraining
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,9 +18,18 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(binding.root)
 
         val bundle = intent.extras
-        if (bundle != null){
-            binding.randomNum.text = bundle.getInt("RandomNumber").toString()
+
+        val usuario = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            bundle?.getParcelable("user", User::class.java)
+        }else{
+            bundle?.getParcelable("user")
         }
+
+        binding.randomNum.text = "Nome: ${usuario?.nome} - Idade: ${usuario?.idade} - Nat.: ${usuario?.nat}"
+
+        /*if (bundle != null){
+            binding.randomNum.text = bundle.getInt("RandomNumber").toString()
+        }*/
 
         binding.fechar.setOnClickListener{
             finish()

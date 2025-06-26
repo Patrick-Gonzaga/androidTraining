@@ -33,8 +33,9 @@ class MainActivity : AppCompatActivity() {
         Log.i("life_cycle", "onResume")
         val randomNum = (0..100).random()
         binding.btnOpenNewAct.setOnClickListener{
+            val usuario = User("Patrick", 27, "BR")
             val intent = Intent(this, MainActivity2::class.java)
-            intent.putExtra("RandomNumber", randomNum)
+            intent.putExtra("user", usuario)
 
             startActivity(intent)
         }
